@@ -9,7 +9,6 @@ tweets = []
 for tweet in get_tweets(twitter_username):
 	tweets.append(tweet['text'])
 
-
 bot = telegram.Bot(token=bot_token)
 
 updater = Updater(token=bot_token, use_context=True)
@@ -17,6 +16,10 @@ dispatcher = updater.dispatcher
 
 def tweet(update, context):
 	tweet = tweets[random.randint(0, len(tweets))]
+	if "pic" in tweet:
+		tweet = tweet.split("pic")
+		tweet = tweet[0] + " pic" + tweet[1]
+
 	context.bot.send_message(chat_id=update.effective_chat.id, text=tweet)
 	print(tweet)
 
