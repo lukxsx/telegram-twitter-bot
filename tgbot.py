@@ -17,8 +17,8 @@ dispatcher = updater.dispatcher
 def tweet(update, context):
 	tweet = tweets[random.randint(0, len(tweets))]
 	if "pic" in tweet:
-		tweet = tweet.split("pic")
-		tweet = tweet[0] + " pic" + tweet[1]
+		tweet = tweet.split("pic.twitter.com")
+		tweet = tweet[0] + " pic.twitter.com" + tweet[1]
 
 	context.bot.send_message(chat_id=update.effective_chat.id, text=tweet)
 	print(tweet)
